@@ -1,0 +1,32 @@
+ff00  origine
+ff12  debut d'execution
+6f6d   emplacement : 65280  (0xff00)  ligne n° 10	STA string "omaewamoshinderu"
+6165   emplacement : 65282  (0xff02) 
+7761   emplacement : 65284  (0xff04) 
+6d6f   emplacement : 65286  (0xff06) 
+7368   emplacement : 65288  (0xff08) 
+696e   emplacement : 65290  (0xff0a) 
+6465   emplacement : 65292  (0xff0c) 
+7275   emplacement : 65294  (0xff0e) 
+0000   emplacement : 65296  (0xff10) 
+6f80   emplacement : 65298  (0xff12)  ligne n° 11	DEBUT 	   	LDW SP, #STACKA
+1000   emplacement : 65300  (0xff14) 
+61d0   emplacement : 65302  (0xff16)  ligne n° 12			LDW R1,@PARAMA
+fef0   emplacement : 65304  (0xff18) 
+0a50   emplacement : 65306  (0xff1a)  ligne n° 13			JSR @FIND
+ff1e   emplacement : 65308  (0xff1c) 
+6280   emplacement : 65310  (0xff1e)  ligne n° 15	FIND 		LDW R2, #STA // R2 <- STA
+ff00   emplacement : 65312  (0xff20) 
+3201   emplacement : 65314  (0xff22)  ligne n° 16	LOOP		ADQ 1,R2
+53a2   emplacement : 65316  (0xff24)  ligne n° 17			LDB R3,(R2) // R3 = CTC
+1308   emplacement : 65318  (0xff26)  ligne n° 18			BNE SUITE -$ -2
+20ff   emplacement : 65320  (0xff28)  ligne n° 19			LDQ NO_FIND, R0
+11f6   emplacement : 65322  (0xff2a)  ligne n° 20			BMP LOOP -$ -2
+20ff   emplacement : 65324  (0xff2c)  ligne n° 21			LDQ NO_FIND, R0
+0200   emplacement : 65326  (0xff2e)  ligne n° 22			RTS
+4f13   emplacement : 65328  (0xff30)  ligne n° 23	SUITE		CMP R1,R3
+13ee   emplacement : 65330  (0xff32)  ligne n° 24			BNE LOOP -$ -2
+6080   emplacement : 65332  (0xff34)  ligne n° 25			LDW R0, #STA
+ff00   emplacement : 65334  (0xff36) 
+f200   emplacement : 65336  (0xff38)  ligne n° 26			SUB R2,R0,R0
+0200   emplacement : 65338  (0xff3a)  ligne n° 27			RTS
