@@ -1,0 +1,27 @@
+
+LOADA equ 0xFF00
+PARAMA equ 0xFEF0
+RETA equ 0xFEF2
+ORG LOADA
+STACKA equ 0x1000
+SP equ R15
+NO_FIND equ -1
+START DEBUT
+STA string "omaewamoshinderu"
+DEBUT 	   	LDW SP, #STACKA
+		LDW R1,@PARAMA
+		JSR @FIND
+
+FIND 		LDW R2, #STA // R2 <- STA
+LOOP		ADQ 1,R2
+		LDB R3,(R2) // R3 = CTC
+		BNE SUITE -$ -2
+		LDQ NO_FIND, R0
+		BMP LOOP -$ -2
+		LDQ NO_FIND, R0
+		RTS
+SUITE		CMP R1,R3
+		BNE LOOP -$ -2
+		LDW R0, #STA
+		SUB R2,R0,R0
+		RTS
